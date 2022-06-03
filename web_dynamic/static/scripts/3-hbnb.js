@@ -34,12 +34,6 @@ $(document).ready(() => {
             for(let i= 0; i < data.length; i++) {
                 place=data[i];
 
-                $.get(`http://localhost:5001/api/v1/users/${place.user_id}`, function(data_user, place) {
-                    owner = data_user.first_name + " " + data_user.last_name
-                    alert(owner);
-                 }
-             );
-                 //alert(new_data);
                 template = ['<article>',
                 '<div class="title_box">',
                 '<h2>' + place.name + '</h2>',
@@ -50,7 +44,7 @@ $(document).ready(() => {
                 '<div class="number_rooms">' + place.number_rooms + 'Bedroom(s)</div>',
                 '<div class="number_bathrooms">' + place.number_bathrooms + 'Bathroom(s)</div>',
                 '</div>',
-                '<div class="user"><b>Owner: </b>' + owner + "</div>",
+                '<div class="user"><b>Owner: </b>' + place.Owner + "</div>",
                 '<div class="description">',
                 place.description,
                 '</div>',
