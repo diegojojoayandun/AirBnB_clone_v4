@@ -20,22 +20,25 @@ $(document).ready(() => {
         selector.removeClass("available");
     }
     });
+
+    const api = "http://localhost:5001/api/v1/places_search";
+    const dict_data = {};
+
+    $.ajax({
+        type: "POST",
+        url:api,
+        data: JSON.stringify(dict_data),
+        contentType: 'application/json',
+        success: (data) => {
+
+            for(let i= 0; i < data.length; i++) {
+                place=data[i];
+                template = '<article><h2>' + place.name + '</h2><div class="price_by_night"><p>$' + place.price_by_night + '</p></div><div class="information"><div class="max_guest"><div class="guest_image"></div><p>' + place.max_guest + '</p></div><div class="number_rooms"><div class="bed_image"></div><p>' + place.number_rooms + '</p></div><div class="number_bathrooms"><div class="bath_image"></div><p>' + place.number_bathrooms + '</p></div></div><div class="description"><p>' + place.description + '</p></div></article>'
+                $('section.places').append(template)
+            }
+        }
+    });
+
+
 });
 
-const url = "http://localhost:5001/api/v1/places_search";
-const dict_data = {};
-
-$.ajax({
-    type: "POST",
-    url: url,
-    data: JSON.stringify(dict_data),
-    contentType: 'application/json',
-    success: (data) => {
-        alert(data)
-        alert(data[0].name)
-        alert(data[0].id)
-        alert(data[1].name)
-        alert(data[1].id)
-    },
-    dataType: 'json'
-  });
