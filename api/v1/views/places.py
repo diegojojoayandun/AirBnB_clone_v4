@@ -180,13 +180,13 @@ def places_search():
                                for am in amenities_obj])]
 
 
-    
+
     places = []
     for p in list_places:
         d = p.to_dict()
         owner_key = "User.{}".format(p.user_id)
         owner = list_users[owner_key]
-        name_owner = "{} {}".format(owner.fist_name, owner.last_name)
+        name_owner = "{} {}".format(owner.first_name, owner.last_name)
         print(name_owner)
         d["Owner"] = name_owner
         d.pop('amenities', None)
